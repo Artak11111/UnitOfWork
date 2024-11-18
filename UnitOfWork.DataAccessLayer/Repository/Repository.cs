@@ -12,12 +12,7 @@ namespace UnitOfWork.DataAccessLayer.Repository
 
         public Repository(DbContext context)
         {
-            SetContext(context);
-        }
-
-        public void SetContext(object context)
-        {
-            Context = (DbContext)context;
+            Context = context;
         }
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

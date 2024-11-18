@@ -13,9 +13,9 @@ namespace UnitOfWork.DataAccessLayer.Extensions
         public static void AddDataAccessLayer(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySQL(configuration.GetConnectionString("UnitOfWorkDb")!), ServiceLifetime.Transient);
+                options.UseMySQL(configuration.GetConnectionString("UnitOfWorkDb")!), ServiceLifetime.Scoped);
 
-            services.AddTransient<DbContext, ApplicationDbContext>();
+            services.AddScoped<DbContext, ApplicationDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }

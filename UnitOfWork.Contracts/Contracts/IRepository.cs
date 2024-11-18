@@ -5,8 +5,6 @@ namespace UnitOfWork.Contracts.Contracts
     public interface IRepository<TEntity>
         where TEntity : EntityBase
     {
-        void SetContext(object context);
-
         Task<TEntity?> GetById(Guid id);
         IQueryable<TEntity> Get();
         Task<List<TEntity>> GetAllAsync();

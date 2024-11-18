@@ -23,12 +23,8 @@ namespace UnitOfWork.DataAccessLayer.UnitOfWork
         public IRepository<T> Repository<T>()
             where T : EntityBase
         {
-            var repository = ServiceProvider.GetService<IRepository<T>>();
-
-            if (repository == null)
-                throw new InvalidOperationException("Repository is not registered in DI container");
-
-            repository.SetContext(Context);
+            var repository = ServiceProvider.GetService<IRepository<T>>()
+                ?? throw new InvalidOperationException("Repository is not registered in DI container");
 
             return repository;
         }
